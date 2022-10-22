@@ -1,16 +1,20 @@
-export class Rectangle {
+import { RectangleForCreationDTO } from "../core/services/swagger-gen";
 
-  public X1: number;
-  public X2: number;
-  public Y1: number;
-  public Y2: number;
+export class Rectangle implements RectangleForCreationDTO {
+
+
+  public x1: number;
+  public x2: number;
+  public y1: number;
+  public y2: number;
+
 
   public getHeigth(): number {
-    return Math.abs(this.Y1 - this.Y2);
+    return Math.abs(this.y1 - this.y2);
   }
 
   public getWidth(): number {
-    return Math.abs(this.X1 - this.X2);
+    return Math.abs(this.x1 - this.x2);
   }
 
   public getPerimetr() {
@@ -18,10 +22,10 @@ export class Rectangle {
   }
 
   getX(): number {
-    return Math.min(this.X1, this.X2);
+    return Math.min(this.x1, this.x2);
   }
 
   getY(): number {
-    return Math.min(this.Y1, this.Y2);
+    return Math.min(this.y1, this.y2);
   }
 }

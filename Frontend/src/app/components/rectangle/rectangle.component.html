@@ -1,9 +1,5 @@
 <app-canvas [width]="this.canvasWidth" [heigth]="this.canvasHeigth">
 
-  <!--[attr.x]="rectangle.getX()"
-            [attr.y]="rectangle.getY()"
-            [attr.width]="rectangle.getWidth()"
-            [attr.height]="rectangle.getHeight()"-->
   <svg:rect [attr.x]="this.rectangle.getX()"
             [attr.y]="this.rectangle.getY()"
             [attr.width]="this.rectangle.getWidth()"
@@ -14,10 +10,7 @@
             stroke-opacity="1"></rect>
 
 
-      <svg:text [attr.x]="100" [attr.y]="100" class="small">100</svg:text>
-      <!--<svg:text [attr.x]="rectangle.getX()" [attr.y]="rectangle.getY()" class="small">{{this.t()}}</svg:text>-->
-
-
+      <svg:text [attr.x]="this.rectangle.x1" [attr.y]="this.rectangle.y1" class="small">100</svg:text>
 </app-canvas>
 
 
