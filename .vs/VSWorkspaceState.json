@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Frontend",
+    "\\Frontend\\.angular",
+    "\\Frontend\\src",
+    "\\Frontend\\src\\app",
+    "\\Frontend\\src\\app\\components",
+    "\\Frontend\\src\\app\\components\\canvas",
+    "\\Frontend\\src\\app\\components\\rectangle",
+    "\\Frontend\\src\\app\\models"
+  ],
+  "SelectedNode": "\\Frontend\\src\\app\\components\\rectangle\\rectangle.component.ts",
+  "PreviewInSolutionExplorer": false
+}
