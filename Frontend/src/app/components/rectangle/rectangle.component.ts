@@ -1,7 +1,8 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { RectangleHttpService } from '../../core/services/rectangleHttpService/rectangle-http.service';
 import { RectangleForCreationDTO } from '../../core/services/swagger-gen';
 import { Rectangle } from '../../models/rectangle.model';
+import { CanvasComponent } from '../canvas/canvas.component';
 
 @Component({
   selector: 'app-rectangle',
@@ -9,6 +10,9 @@ import { Rectangle } from '../../models/rectangle.model';
   styleUrls: ['./rectangle.component.css']
 })
 export class RectangleComponent implements OnInit {
+
+  //@ViewChild('canvas', { read: CanvasComponent })
+  //public canvas: CanvasComponent;
 
   constructor(private rectangleHttpService: RectangleHttpService) { }
   public rectangle: Rectangle = new Rectangle();
@@ -20,13 +24,14 @@ export class RectangleComponent implements OnInit {
       this.rectangle = res as Rectangle;
     },
       err => {
-        alert(err.message);
+       // alert(err.message);
       });
   }
 
   public yResize: number;
   public xResize: number
 
+  public perimetr: number;
 
 
   public canvasHeigth: number = 400
@@ -41,8 +46,6 @@ export class RectangleComponent implements OnInit {
 
   @HostListener('document:mousedown', ['$event'])
   public MouseDownEvent(event: any) {
-    console.log("down");
-    console.log(event);
 
     this.isEdited = true;
 
@@ -57,6 +60,7 @@ export class RectangleComponent implements OnInit {
       this.yResize =event.clientY;
     }
   }
+  
 
   @HostListener("document:mouseup",["($event)"])
   public MouseUpEvent(event: any) {
@@ -64,13 +68,19 @@ export class RectangleComponent implements OnInit {
     this.isRectangleCreated = true;
     this.isEdited = false;
     //save rectangle
-    this.rectangleHttpService.saveRectangle(this.rectangle).subscribe();
-
+    this.rectangleHttpService.saveRectangle(this.rectangle).subscribe(res => {
+      console.log(res);
+    }, err => {
+      console.log(err);
+    });
+    this.perimetr = this.rectangle.getPerimetr();
+    
   }
 
   @HostListener('document:mousemove', ['$event'])
   onMouseMove(event: any) {
     const invisible_border = 20;
+    //console.log("left"+this.canvas.left);
 
     //check create or resize
     if (this.isEdited)
